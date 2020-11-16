@@ -1,4 +1,4 @@
-PayPal Transaction Downloader for GnuCash Imports
+# PayPal Transaction Downloader for GnuCash Imports
 
 Long story short, the PayPal CSV downloads suck. They are missing vital information about the transactions, notably the breakdown of what people purchased.
 
