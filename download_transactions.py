@@ -49,7 +49,7 @@ else:
               "Notes",
               "Partner", 
               "Transfer Account"]
-    print(", ".join(header))        
+    print(",".join(header))        
     
     for t in transactions: #response.result.transaction_details:
         id = t.transaction_info.transaction_id  # @ReservedAssignment
@@ -113,13 +113,17 @@ else:
         cart = t.cart_info
         if hasattr(cart, "item_details"):
             wait_for_amount = False
+            prior_item_name = None
             for item in cart.item_details:
                 item_name = getattr(item, "item_name", "")
                 if wait_for_amount:
-                    if not item_name == "Amount":
+                    if item_name == "Amount":
+                        item_name = prior_item_name
+                    else:
                         raise Exception("Oops: Expecting an Amount item following a transaction without an amount and didn't find one.")                    
                 else:    
                     quantity = item.item_quantity
+                    prior_item_name = item_name
 
                 # PayPal transaction exhibit one gran weirdness at least
                 # Typically each item in the cart as an item_amount 
@@ -131,26 +135,29 @@ else:
                     deposit = amount * (1+pp_commission)
                     currency = item.item_amount.currency_code
                     wait_for_amount = False
+                    
+#                     if item_name == "Amount":
+#                         breakpoint()
+                        
+                    summary = [idate, 
+                              f"CURRENCY::{currency}", 
+                              f"{deposit:.2f}", 
+                              f"{amount:.2f}", 
+                              quantity, 
+                              f"{balance:.2f}", 
+                              id, 
+                              item_name.strip(), 
+                              note.strip(),
+                              partner]
+                    
+                    print(",".join(summary))        
+                    
                 elif wait_for_amount:
                     # If w're waiting for an amount, we should have
                     # got one. It's a problem if not.
                     raise Exception("Oops: Was waiting for an Amount item, it came, but didn't actually contain an amount!")                    
                 else:
                     wait_for_amount = True
-                    continue
-    
-                summary = [idate, 
-                          f"CURRENCY::{currency}", 
-                          f"{deposit:.2f}", 
-                          f"{amount:.2f}", 
-                          quantity, 
-                          f"{balance:.2f}", 
-                          id, 
-                          item_name.strip(), 
-                          note.strip(),
-                          partner]
-                
-                print(",".join(summary))        
         else:
             summary = [idate, 
                       f"CURRENCY::{currency}", 
