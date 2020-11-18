@@ -4,7 +4,7 @@ Long story short, the PayPal CSV downloads suck. They are missing vital informat
 
 So turned to the PayPal SDK to see if it could do better.
 
-The PayPal SDK sucks! Well ity works, but the documentation and support is a literal schmozzle. 
+The PayPal SDK sucks! Well it works, but the documentation and support is a literal schmozzle. 
 
 That said, it works, and I can now download a full transaction history with a breakdown of what was purchased.
 
