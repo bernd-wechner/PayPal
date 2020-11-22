@@ -31,8 +31,8 @@ But of course it doesn't work as documented and there is odd confusion between t
 All I can say is: Aaaargh! PayPal sure have a schmozzle of API and SDK documentation and offerings and itcost me way more efort than it should to get the transaction downloads I want, BUT:
 
 - It works and is way better than requesting downloads through their website because:
-	- It comes immediately, (on their website you request them and on good days they ar eprepared and ready for download quikcly, on bad days it takes hours before you get na email that it can be downloaded)
-	- It includes a breakdown of the shopping cart items (which their website CSV donwloads do not!
+	- It comes immediately, (on their website you request them and on good days they are prepared and ready for download quickly, on bad days it takes hours before you get na email that it can be downloaded)
+	- It includes a breakdown of the shopping cart items (which their website CSV downloads do not!)
 	- It can include (not implemented in the current draft I have here) much more information about the buyer than their standard CSV donwloads offer. 
 
 Of course it's current as at Novemebr 2020 and PayPal are evolving their API so may change and we are leaning onthe deprecated v1 API, because there is no evidence of a v2 support for same yet. But I do hope you get some use out of this too if you landed here. 
